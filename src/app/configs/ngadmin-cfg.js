@@ -11,12 +11,14 @@ angular.module('MisterXAdmin')
   var locations = nga.entity('locations')
     .identifier(nga.field('_id'));
   locations.listView()
+    .perPage(10)
     .fields([
       nga.field('_id'),
       nga.field('group', 'string'),
       nga.field('lat'),
       nga.field('lng'),
-   ]);
+    ])
+    .listActions(['show', 'edit', 'delete']);
    admin.addEntity(locations);
 
   // users service
