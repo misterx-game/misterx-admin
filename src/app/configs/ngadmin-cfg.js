@@ -28,6 +28,7 @@ angular.module('MisterXAdmin')
     .perPage(10)
     .fields([
       nga.field('_id'),
+      nga.field('github.username').label('GitHub')
     ])
     .listActions(['show', 'edit', 'delete']);
   users.creationView()
@@ -36,7 +37,9 @@ angular.module('MisterXAdmin')
     ]);
   users.editionView()
     .fields([
-      nga.field('githubId')
+      nga.field('github.id').label('GitHub ID'),
+      nga.field('github.username').label('GitHub Username'),
+      nga.field('github.$ref').label('GitHub URL')
     ]);
   users.showView()
     .fields([
