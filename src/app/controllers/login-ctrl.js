@@ -1,15 +1,15 @@
 'use strict';
 
 angular.module('MisterXAdmin')
-.controller('LoginCtrl', function($scope, $auth) {
-
-  $scope.authenticate = function(provider) {
+.controller('LoginController', function($auth) {
+  var vm = this;
+  vm.authenticate = function(provider) {
     $auth.authenticate(provider);
   };
-  $scope.logout = function() {
+  vm.logout = function() {
     localStorage.removeItem('satellizer_token');
   };
-  $scope.loggedIn = $auth.isAuthenticated();
+  vm.loggedIn = $auth.isAuthenticated();
 
 });
 

@@ -26,9 +26,9 @@
 
     <div ui-view></div>
 
-    <div ng-controller="LoginCtrl">
-      <button ng-click="authenticate('github')">Sign in with GitHub</button>
-      <button ng-click="logout()">Logout</button>
+    <div ng-controller="LoginController as ctrl">
+      <button ng-click="ctrl.authenticate('github')">Sign in with GitHub</button>
+      <button ng-click="ctrl.logout()">Logout</button>
     </div>
 
     <!-- build:js(src) scripts/vendor.js -->

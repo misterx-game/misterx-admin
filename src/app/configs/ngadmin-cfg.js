@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('MisterXAdmin')
-.config(['NgAdminConfigurationProvider', 'Config', function(NgAdminConfigurationProvider, Config) {
+.config(function(NgAdminConfigurationProvider, Config) {
   var nga = NgAdminConfigurationProvider;
   // create an admin application
   var admin = nga.application('Mister X Admin')
-      .baseApiUrl('http://localhost:3001/');
+      .baseApiUrl(Config.ENV.SERVER_URL + '/');
 
   // locations service
   var locations = nga.entity('locations')
@@ -16,7 +16,7 @@ angular.module('MisterXAdmin')
       nga.field('_id'),
       nga.field('group', 'string'),
       nga.field('lat'),
-      nga.field('lng'),
+      nga.field('lng')
     ])
     .listActions(['show', 'edit', 'delete']);
    admin.addEntity(locations);
@@ -50,5 +50,5 @@ angular.module('MisterXAdmin')
 
   // attach the admin application to the DOM and run it
   nga.configure(admin);
-}]);
+});
 

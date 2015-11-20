@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('MisterXAdmin')
-.config(['$authProvider', 'jwtInterceptorProvider', 'Config', function($authProvider, jwtInterceptorProvider, Config) {
+.config(function($authProvider, jwtInterceptorProvider, Config) {
   $authProvider.github({
     url: Config.ENV.SERVER_URL + '/auth/github',
     clientId: Config.ENV.GITHUB_CLIENT_ID
@@ -9,4 +9,4 @@ angular.module('MisterXAdmin')
   jwtInterceptorProvider.tokenGetter = ['$localStorage', function () {
     return localStorage.getItem('satellizer_token');
   }];
-}]);
+});
