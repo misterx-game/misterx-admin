@@ -7,6 +7,7 @@
  */
 
 var gutil = require('gulp-util');
+var minimist = require('minimist');
 
 /**
  *  The main paths of your project handle these with care
@@ -14,9 +15,13 @@ var gutil = require('gulp-util');
 exports.paths = {
   src: 'src',
   dist: 'dist',
+  deploy: '/var/www/htdocs',
   tmp: '.tmp',
   e2e: 'e2e'
 };
+
+// OPTIONS
+exports.options = minimist(process.argv.slice(2));
 
 /**
  *  Wiredep is the lib which inject bower dependencies in your project
