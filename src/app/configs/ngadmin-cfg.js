@@ -37,9 +37,11 @@ angular.module('MisterXAdmin')
     ]);
   users.editionView()
     .fields([
-      nga.field('github.id').label('GitHub ID'),
-      nga.field('github.username').label('GitHub Username'),
-      nga.field('github.$ref').label('GitHub URL')
+      nga.field('active', 'boolean').validation({ required: true }).label('Active?'),
+      nga.field('admin', 'boolean').validation({ required: true }).label('Admin?'),
+      nga.field('github.id').editable(false).label('GitHub ID'),
+      nga.field('github.username').editable(false).label('GitHub Username'),
+      nga.field('github.url').editable(false).label('GitHub URL')
     ]);
   users.showView()
     .fields([
