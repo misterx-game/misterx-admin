@@ -11,7 +11,7 @@ angular.module('MisterXAdmin')
   var locations = nga.entity('locations')
     .identifier(nga.field('_id'));
   locations.listView()
-    .perPage(10)
+    .perPage(100)
     .fields([
       nga.field('_id'),
       nga.field('group', 'string'),
