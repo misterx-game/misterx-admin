@@ -18,7 +18,7 @@ angular.module('MisterXAdmin')
       nga.field('lat'),
       nga.field('lng')
     ])
-    .listActions(['show', 'edit', 'delete']);
+    .listActions(['delete']);
    admin.addEntity(locations);
 
   // users service
