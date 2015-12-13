@@ -50,6 +50,39 @@ angular.module('MisterXAdmin')
     ]);
   admin.addEntity(users);
 
+  var locationCollection = nga.collection(locations)
+    .name('recent_locations')
+    .title('Recent locations')
+    .perPage(10)
+    .fields([
+      nga.field('_id'),
+      nga.field('group', 'string'),
+      nga.field('lat'),
+      nga.field('lng')
+    ])
+    .sortField('_id')
+    .sortDir('DESC')
+    .order(1);
+
+  var userCollection = nga.collection(users)
+    .name('recent_users')
+    .title('Recent users')
+    .perPage(10)
+    .fields([
+      nga.field('_id'),
+      nga.field('github.username').label('GitHub'),
+      nga.field('admin', 'boolean').validation({ required: true }).label('Admin')
+    ])
+    .sortField('_id')
+    .sortDir('DESC')
+    .order(2);
+
+  admin.dashboard(
+    nga.dashboard()
+      .addCollection(locationCollection)
+      .addCollection(userCollection)
+  );
+
   // attach the admin application to the DOM and run it
   nga.configure(admin);
 });
