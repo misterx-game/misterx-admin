@@ -16,7 +16,8 @@ angular.module('MisterXAdmin')
       nga.field('_id'),
       nga.field('group', 'string'),
       nga.field('lat'),
-      nga.field('lng')
+      nga.field('lng'),
+      nga.field('client.time', 'datetime')
     ])
     .listActions(['delete']);
    admin.addEntity(locations);
@@ -55,10 +56,10 @@ angular.module('MisterXAdmin')
     .title('Recent locations')
     .perPage(10)
     .fields([
-      nga.field('_id'),
       nga.field('group', 'string'),
       nga.field('lat'),
-      nga.field('lng')
+      nga.field('lng'),
+      nga.field('client.time', 'datetime')
     ])
     .sortField('_id')
     .sortDir('DESC')
