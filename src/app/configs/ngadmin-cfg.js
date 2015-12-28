@@ -7,21 +7,6 @@ angular.module('MisterXAdmin')
   var admin = nga.application('Mister X Admin')
       .baseApiUrl(Config.ENV.SERVER_URL + '/');
 
-  // locations service
-  var locations = nga.entity('locations')
-    .identifier(nga.field('_id'));
-  locations.listView()
-    .perPage(100)
-    .fields([
-      nga.field('_id'),
-      nga.field('group', 'string'),
-      nga.field('lat'),
-      nga.field('lng'),
-      nga.field('client.time', 'datetime')
-    ])
-    .listActions(['delete']);
-   admin.addEntity(locations);
-
   // users service
   var users = nga.entity('users')
     .identifier(nga.field('_id'));
@@ -50,6 +35,25 @@ angular.module('MisterXAdmin')
       users.editionView().fields()
     ]);
   admin.addEntity(users);
+
+  // locations service
+  var locations = nga.entity('locations')
+   .identifier(nga.field('_id'));
+  locations.listView()
+   .perPage(100)
+   .fields([
+    nga.field('_id'),
+    nga.field('user', 'reference')
+     .targetEntity(users)
+     .targetField(nga.field('github.username'))
+     .label('User'),
+    nga.field('group', 'string'),
+    nga.field('lat'),
+    nga.field('lng'),
+    nga.field('client.time', 'datetime')
+   ])
+   .listActions(['delete']);
+  admin.addEntity(locations);
 
   var locationCollection = nga.collection(locations)
     .name('recent_locations')
