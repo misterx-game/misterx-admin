@@ -55,6 +55,38 @@ angular.module('MisterXAdmin')
    .listActions(['delete']);
   admin.addEntity(locations);
 
+
+   // game service
+   var games = nga.entity('games')
+    .identifier(nga.field('_id'));
+   games.listView()
+    .perPage(10)
+    .fields([
+      nga.field('_id'),
+      nga.field('name'),
+      nga.field('start', 'datetime'),
+      nga.field('end', 'datetime')
+    ])
+    .listActions(['show', 'edit', 'delete']);
+   games.creationView()
+    .fields([
+      nga.field('name'),
+      nga.field('start', 'datetime'),
+      nga.field('end', 'datetime')
+    ]);
+   games.editionView()
+    .fields([
+      nga.field('name'),
+      nga.field('start', 'datetime'),
+      nga.field('end', 'datetime')
+    ]);
+   games.showView()
+    .fields([
+      nga.field('_id'),
+      games.editionView().fields()
+    ]);
+   admin.addEntity(games);
+
   var locationCollection = nga.collection(locations)
     .name('recent_locations')
     .title('Recent locations')
@@ -82,10 +114,25 @@ angular.module('MisterXAdmin')
     .sortDir('DESC')
     .order(2);
 
+   var gameCollection = nga.collection(games)
+    .name('games')
+    .title('Games')
+    .perPage(10)
+    .fields([
+      nga.field('_id'),
+      nga.field('name').label('Name'),
+      nga.field('start', 'datetime'),
+      nga.field('end', 'datetime')
+    ])
+    .sortField('_id')
+    .sortDir('DESC')
+    .order(2);
+
   admin.dashboard(
     nga.dashboard()
       .addCollection(locationCollection)
       .addCollection(userCollection)
+      .addCollection(gameCollection)
   );
 
   // attach the admin application to the DOM and run it
