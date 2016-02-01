@@ -35,27 +35,6 @@ angular.module('MisterXAdmin')
       users.editionView().fields()
     ]);
   admin.addEntity(users);
-
-  // locations service
-  var locations = nga.entity('locations')
-   .identifier(nga.field('_id'));
-  locations.listView()
-   .perPage(100)
-   .fields([
-    nga.field('_id'),
-    nga.field('user', 'reference')
-     .targetEntity(users)
-     .targetField(nga.field('github.username'))
-     .label('User'),
-    nga.field('group', 'string'),
-    nga.field('lat'),
-    nga.field('lng'),
-    nga.field('client.time', 'datetime')
-   ])
-   .listActions(['delete']);
-  admin.addEntity(locations);
-
-
    // game service
    var games = nga.entity('games')
     .identifier(nga.field('_id'));
@@ -86,6 +65,29 @@ angular.module('MisterXAdmin')
       games.editionView().fields()
     ]);
    admin.addEntity(games);
+
+  // locations service
+  var locations = nga.entity('locations')
+   .identifier(nga.field('_id'));
+  locations.listView()
+   .perPage(100)
+   .fields([
+    nga.field('_id'),
+    nga.field('user', 'reference')
+     .targetEntity(users)
+     .targetField(nga.field('github.username'))
+     .label('User'),
+    nga.field('game', 'reference')
+     .targetEntity(games)
+     .targetField(nga.field('name'))
+     .label('Game'),
+    nga.field('group', 'string'),
+    nga.field('lat'),
+    nga.field('lng'),
+    nga.field('client.time', 'datetime')
+   ])
+   .listActions(['delete']);
+  admin.addEntity(locations);
 
   var locationCollection = nga.collection(locations)
     .name('recent_locations')
