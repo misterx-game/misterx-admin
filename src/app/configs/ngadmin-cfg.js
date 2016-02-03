@@ -14,7 +14,8 @@ angular.module('MisterXAdmin')
     .perPage(10)
     .fields([
       nga.field('_id'),
-      nga.field('github.username').label('GitHub')
+      nga.field('github.username').label('GitHub'),
+      nga.field('facebook.username').label('Facebook')
     ])
     .listActions(['show', 'edit', 'delete']);
   users.creationView()
@@ -27,7 +28,11 @@ angular.module('MisterXAdmin')
       nga.field('admin', 'boolean').validation({ required: true }).label('Admin?'),
       nga.field('github.id').editable(false).label('GitHub ID'),
       nga.field('github.username').editable(false).label('GitHub Username'),
-      nga.field('github.url').editable(false).label('GitHub URL')
+      nga.field('github.url').editable(false).label('GitHub URL'),
+      nga.field('facebook.id').editable(false).label('Facebook ID'),
+      nga.field('facebook.username').editable(false).label('Facebook Username'),
+      nga.field('facebook.url').editable(false).label('Facebook URL')
+
     ]);
   users.showView()
     .fields([
