@@ -81,7 +81,7 @@ angular.module('MisterXAdmin')
      .targetEntity(games)
      .targetField(nga.field('name'))
      .label('Game'),
-    nga.field('group', 'string'),
+    nga.field('role', 'string'),
     nga.field('lat'),
     nga.field('lng'),
     nga.field('client.time', 'datetime')
@@ -94,7 +94,7 @@ angular.module('MisterXAdmin')
     .title('Recent locations')
     .perPage(10)
     .fields([
-      nga.field('group', 'string'),
+      nga.field('role', 'string'),
       nga.field('lat'),
       nga.field('lng'),
       nga.field('client.time', 'datetime')
