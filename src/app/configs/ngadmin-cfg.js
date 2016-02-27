@@ -88,6 +88,37 @@ angular.module('MisterXAdmin')
    ])
    .listActions(['delete']);
   admin.addEntity(locations);
+  // playfield service
+   var playfields = nga.entity('playfields')
+    .identifier(nga.field('_id'));
+   playfields.listView()
+    .perPage(10)
+    .fields([
+      nga.field('_id'),
+      nga.field('name'),
+      nga.field('geoFeature')
+      //nga.field('start', 'datetime'),
+      //nga.field('end', 'datetime')
+    ])
+    .listActions(['show', 'edit', 'delete']);
+   playfields.creationView()
+    .fields([
+      nga.field('name'),
+      nga.field('geoFeature', 'text')
+      //nga.field('end', 'datetime')
+    ]);
+   playfields.editionView()
+    .fields([
+      nga.field('name'),
+      nga.field('geoFeature', 'text')
+      //nga.field('end', 'datetime')
+    ]);
+   playfields.showView()
+    .fields([
+      nga.field('_id'),
+      playfields.editionView().fields()
+    ]);
+   admin.addEntity(playfields);
 
   var locationCollection = nga.collection(locations)
     .name('recent_locations')
@@ -125,6 +156,19 @@ angular.module('MisterXAdmin')
       nga.field('name').label('Name'),
       nga.field('start', 'datetime'),
       nga.field('end', 'datetime')
+    ])
+    .sortField('_id')
+    .sortDir('DESC')
+    .order(2);
+ var playfieldCollection = nga.collection(playfields)
+    .name('playfields')
+    .title('Playfields')
+    .perPage(10)
+    .fields([
+      nga.field('_id'),
+      nga.field('name').label('Name'),
+      nga.field('geoFeature')
+      //nga.field('end', 'datetime')
     ])
     .sortField('_id')
     .sortDir('DESC')
