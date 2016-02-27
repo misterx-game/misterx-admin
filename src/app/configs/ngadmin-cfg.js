@@ -96,7 +96,7 @@ angular.module('MisterXAdmin')
     .fields([
       nga.field('_id'),
       nga.field('name'),
-      nga.field('geoFeature')
+      nga.field('geometry')
       //nga.field('start', 'datetime'),
       //nga.field('end', 'datetime')
     ])
@@ -104,13 +104,13 @@ angular.module('MisterXAdmin')
    playfields.creationView()
     .fields([
       nga.field('name'),
-      nga.field('geoFeature', 'text')
+      nga.field('geometry', 'text')
       //nga.field('end', 'datetime')
     ]);
    playfields.editionView()
     .fields([
       nga.field('name'),
-      nga.field('geoFeature', 'text')
+      nga.field('geometry', 'text')
       //nga.field('end', 'datetime')
     ]);
    playfields.showView()
@@ -167,7 +167,7 @@ angular.module('MisterXAdmin')
     .fields([
       nga.field('_id'),
       nga.field('name').label('Name'),
-      nga.field('geoFeature')
+      nga.field('geometry')
       //nga.field('end', 'datetime')
     ])
     .sortField('_id')
