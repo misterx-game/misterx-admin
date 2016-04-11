@@ -1,0 +1,23 @@
+# temp files
+.DS_Store
+.tmp
+.sass-cache
+
+# npm & bower
+node_modules/
+bower_components/
+
+# cordova
+platforms/
+plugins/
+res/*/current/
+
+# build artefacts
+coverage/
+
+# build folder
+dist/**
+
+# IDE
+*.sublime-project
+*.sublime-workspace
